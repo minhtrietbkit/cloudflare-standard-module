@@ -15,21 +15,7 @@ variable "dns_a_record_list" {
 variable "ip_allowlist" {
   type = list(string)
   description = "List of IP addresses to be whitelisted by CF"
-}
-
-variable "flag_enable_allow_list" {
-  type = bool
-  description = "Whitelist only IP addresses in IP allowlist. False means site is available to all IP addresses"
-}
-
-variable "flag_enable_rate_limit" {
-  type = bool
-  description = "Enable rate limit rules"
-}
-
-variable "flag_enable_cache_config" {
-  type = bool
-  description = "Enable cache configuration rules"
+  default = []
 }
 
 variable "rate_limit_rule_list" {
@@ -41,6 +27,7 @@ variable "rate_limit_rule_list" {
     mitigation_timeout  = number
   }))
   description = "List of rate limiting config"
+  default = []
 }
 
 variable "cache_rule_list" {
@@ -56,4 +43,22 @@ variable "cache_rule_list" {
     })
   }))
   description = "List of cache rules"
+}
+
+variable "flag_enable_allow_list" {
+  type = bool
+  description = "Whitelist only IP addresses in IP allowlist. False means site is available to all IP addresses"
+  default = true
+}
+
+variable "flag_enable_rate_limit" {
+  type = bool
+  description = "Enable rate limit rules"
+  default = true
+}
+
+variable "flag_enable_cache_config" {
+  type = bool
+  description = "Enable cache configuration rules"
+  default = true
 }
